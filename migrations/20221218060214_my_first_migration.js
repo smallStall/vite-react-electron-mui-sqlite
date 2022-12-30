@@ -3,6 +3,8 @@
  * @returns { Promise<void> }
  */
 
+//https://app.diagrams.net/#G16d92aWLsPwZiQt4vTEqGfERDxKfwUQXF
+
 exports.up = function (knex) {
   return knex.schema
     .createTable('projects', table => {
