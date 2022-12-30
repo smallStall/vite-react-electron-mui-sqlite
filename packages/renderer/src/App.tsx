@@ -7,7 +7,7 @@ declare global {
 }
 
 const getNya = async () => {
-  const message = await window.myapi.nyan('はい');
+  const message = await window.myapi.test();
   console.log(message);
   return message;
 };

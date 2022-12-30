@@ -1,6 +1,13 @@
-import {app, BrowserWindow} from 'electron';
+import {app, BrowserWindow, ipcMain} from 'electron';
 import {join} from 'path';
 import {URL} from 'url';
+const knex = require('knex')({
+  client: 'better-sqlite3', // or 'better-sqlite3'
+  connection: {
+    filename: './foobar.db',
+  },
+});
+
 const db = require('better-sqlite3-multiple-ciphers')('foobar.db');
 
 async function createWindow() {
@@ -13,6 +20,9 @@ async function createWindow() {
       webviewTag: false, // The webview tag is not recommended. Consider alternatives like an iframe or Electron's BrowserView. @see https://www.electronjs.org/docs/latest/api/webview-tag#warning
       preload: join(app.getAppPath(), 'packages/preload/dist/index.cjs'),
     },
+  });
+  ipcMain.handle('testtest', async (_e, _arg) => {
+    return knex.select('*').from('test');
   });
 
   /**

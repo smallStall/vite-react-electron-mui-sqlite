@@ -13,7 +13,9 @@
     "build:preload": "cd ./packages/preload && vite build",
     "build:renderer": "cd ./packages/renderer && vite build",
     "compile": "cross-env MODE=production npm run build && electron-builder build --config .electron-builder.config.js --dir --config.asar=false",
-    "rebuild": "electron-rebuild --arch=arm64 -f -w better-sqlite3-multiple-ciphers",
+    "rebuild": "npm run rebuild:better && npm run rebuild:cipher",
+    "rebuild:better": "electron-rebuild --arch=arm64 -f -w better-sqlite3",
+    "rebuild:cipher": "electron-rebuild --arch=arm64 -f -w better-sqlite3-multiple-ciphers",
     "test": "npm run test:main && npm run test:preload && npm run test:renderer && npm run test:e2e",
     "test:e2e": "npm run build && vitest run",
     "test:main": "vitest run -r packages/main --passWithNoTests",
@@ -44,17 +46,18 @@
     "playwright": "1.27.1",
     "typescript": "4.9.3",
     "unplugin-auto-expose": "0.0.4",
-    "vite": "3.2.4",
-    "vitest": "0.25.3",
-    "vue-tsc": "1.0.9"
+    "vite": "^3.2.5",
+    "vitest": "0.25.3"
   },
   "dependencies": {
+    "@mui/x-data-grid": "^5.17.16",
     "@vitejs/plugin-react": "^2.2.0",
+    "better-sqlite3": "^8.0.1",
     "better-sqlite3-multiple-ciphers": "^8.0.0",
     "electron-updater": "5.3.0",
+    "knex": "^2.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.3",
-    "vue": "3.2.45"
+    "react-router-dom": "^6.4.3"
   }
 }
