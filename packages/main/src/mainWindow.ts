@@ -4,11 +4,9 @@ import {URL} from 'url';
 const knex = require('knex')({
   client: 'better-sqlite3', // or 'better-sqlite3'
   connection: {
-    filename: './foobar.db',
+    filename: './foober.db',
   },
 });
-
-const db = require('better-sqlite3-multiple-ciphers')('foobar.db');
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({
@@ -21,8 +19,8 @@ async function createWindow() {
       preload: join(app.getAppPath(), 'packages/preload/dist/index.cjs'),
     },
   });
-  ipcMain.handle('testtest', async (_e, _arg) => {
-    return knex.select('*').from('test');
+  ipcMain.handle('testtest', async () => {
+    return knex.select('*').from('projects');
   });
 
   /**

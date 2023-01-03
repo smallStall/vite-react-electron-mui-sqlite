@@ -5,7 +5,7 @@ const {contextBridge, ipcRenderer} = require('electron');
 
 contextBridge.exposeInMainWorld('myapi', {
   nyan: async (data: string) => await ipcRenderer.invoke('nyan', data),
-  test: () => ipcRenderer.invoke('testtest'),
+  test: async () => await ipcRenderer.invoke('testtest'),
 });
 
 export {};
