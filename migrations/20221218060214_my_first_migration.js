@@ -99,5 +99,7 @@ exports.down = function (knex) {
     .dropTable('processes')
     .dropTable('operations')
     .dropTable('operation_types')
-    .dropTable('diff_operations');
+    .dropTable('diff_operations')
+    .dropTable('diff_results')
+    .dropTable('test');
 };

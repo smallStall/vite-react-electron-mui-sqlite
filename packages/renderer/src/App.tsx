@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {DataGrid, GridColDef} from '@mui/x-data-grid';
 import './styles.css';
+import {Box, styled} from '@mui/system';
 const columns: GridColDef[] = [
   {field: 'id', headerName: 'ID', width: 90},
   {field: 'project_name', headerName: 'プロジェクト', width: 200},
@@ -19,16 +20,40 @@ const getNya = async () => {
   return array;
 };
 
+const StyledDataGrid = styled(DataGrid)({
+  '.MuiDataGrid-cellContent': {
+    whiteSpace: 'pre-line',
+    padding: '5px 0 5px 0',
+  },
+  '.MuiDataGrid-cell': {
+    alignItems: 'start',
+  },
+  'MuiDataGrid-row': {
+    height: '200px',
+  },
+});
+
 const App = () => {
-  const [state, setState] = useState([
-    {id: 0, project_name: 'nohooo', project_objective: 'athitai', background: 'teis'},
-  ]);
+  const [state, setState] = useState([]);
+  useEffect(() => {
+    const func = async () => {
+      setState(await getNya());
+    };
+    func();
+  }, []);
   return (
-    <DataGrid
-      rows={state}
-      columns={columns}
-      rowsPerPageOptions={[3]}
-    />
+    <Box
+      height={400}
+      width={600}
+      textAlign="left"
+    >
+      <StyledDataGrid
+        rows={state}
+        columns={columns}
+        rowsPerPageOptions={[3]}
+        getRowHeight={() => 'auto'}
+      />
+    </Box>
   );
 };
 
