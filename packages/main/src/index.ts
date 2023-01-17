@@ -10,6 +10,7 @@ if (!isSingleInstance) {
   app.quit();
   process.exit(0);
 }
+
 app.on('second-instance', restoreOrCreateWindow);
 
 /**
@@ -66,5 +67,5 @@ if (import.meta.env.PROD) {
 }
 
 ipcMain.handle('nyan', (event, data) => {
-  return(`${data}にゃん`);
+  return `${data}にゃん`;
 });

@@ -1,5 +1,4 @@
 /* eslint-env node */
-
 import {chrome} from '../../.electron-vendors.cache.json';
 import {join} from 'path';
 import {builtinModules} from 'module';

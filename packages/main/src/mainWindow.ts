@@ -1,6 +1,7 @@
 import {app, BrowserWindow, ipcMain} from 'electron';
 import {join} from 'path';
 import {URL} from 'url';
+//import {randomUUID} from 'crypto';
 const knex = require('knex')({
   client: 'better-sqlite3', // or 'better-sqlite3'
   connection: {
@@ -19,9 +20,11 @@ async function createWindow() {
       preload: join(app.getAppPath(), 'packages/preload/dist/index.cjs'),
     },
   });
+
   ipcMain.handle('testtest', async () => {
     return knex.select('*').from('projects');
   });
+  //ipcMain.handle('nonce', () => nonce);
 
   /**
    * If the 'show' property of the BrowserWindow's constructor is omitted from the initialization options,
@@ -32,6 +35,25 @@ async function createWindow() {
    * @see https://github.com/electron/electron/issues/25012 for the afford mentioned issue.
    */
   browserWindow.on('ready-to-show', () => {
+    /*
+    const nonce = Buffer.from(randomUUID()).toString('base64');
+    
+    session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+      callback({
+        responseHeaders: {
+          ...details.responseHeaders,
+          'Content-Security-Policy': [
+            "base-uri 'self'",
+            "object-src 'none'",
+            "script-src 'self'",
+            "frame-src: 'none'",
+            "worker-src 'none'",
+            "style-src 'self' 'nonce-ZTIxZTAyMmYtZThiMS00ODY5LTliNzQtMTljZDY0ZTcyNjQ5'",
+          ],
+        },
+      });    
+    });
+*/
     browserWindow?.show();
 
     if (import.meta.env.DEV) {

@@ -11,7 +11,11 @@ const columns: GridColDef[] = [
 
 declare global {
   interface Window {
-    myapi: {nyan: (str: string) => Promise<string>; test: () => Promise<object[]>};
+    myapi: {
+      nyan: (str: string) => Promise<string>;
+      test: () => Promise<object[]>;
+      nonce: () => Promise<string>;
+    };
   }
 }
 

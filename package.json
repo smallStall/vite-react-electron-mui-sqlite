@@ -48,10 +48,12 @@
     "playwright": "1.27.1",
     "typescript": "4.9.3",
     "unplugin-auto-expose": "0.0.4",
-    "vite": "^3.2.5",
+    "vite": "^4.0.4",
+    "vite-plugin-csp": "^1.1.2",
     "vitest": "0.25.3"
   },
   "dependencies": {
+    "@emotion/cache": "^11.10.5",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.3",
