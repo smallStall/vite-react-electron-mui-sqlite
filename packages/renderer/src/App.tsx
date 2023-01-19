@@ -1,10 +1,18 @@
 import React, {useEffect, useState} from 'react';
+import {Link} from '@mui/material';
 import {DataGrid, GridColDef} from '@mui/x-data-grid';
 import './styles.css';
 import {Box, styled} from '@mui/system';
 const columns: GridColDef[] = [
   {field: 'id', headerName: 'ID', width: 90},
-  {field: 'project_name', headerName: 'プロジェクト', width: 200},
+  {
+    field: 'project_name',
+    headerName: 'プロジェクト',
+    width: 200,
+    renderCell: params => {
+      return <Link>{params.value}</Link>;
+    },
+  },
   {field: 'project_objective', headerName: '目的', width: 100},
   {field: 'background', headerName: '背景', width: 200},
 ];
