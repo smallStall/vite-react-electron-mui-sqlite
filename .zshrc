@@ -30,7 +30,7 @@ gish() {
     # コミット対象のファイルを確認
     git status;
     # コミットメッセージ"auto-commit"でコミット
-    git commit -m "`TS=JSC date +\"%m/%d %h:%m\"`";
+    git commit -m "`TS=JSC date +\"%m/%d\"`";
     CULLENT_BRANCH=`git rev-parse --abbrev-ref HEAD`;
     git push origin ${CULLENT_BRANCH};
 }
