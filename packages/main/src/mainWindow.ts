@@ -11,6 +11,8 @@ const knex = require('knex')({
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({
+    width: 1200,
+    height: 800,
     show: false, // Use the 'ready-to-show' event to show the instantiated BrowserWindow.
     webPreferences: {
       nodeIntegration: false,
@@ -21,8 +23,11 @@ async function createWindow() {
     },
   });
 
-  ipcMain.handle('testtest', async () => {
+  ipcMain.handle('getProjects', async () => {
     return knex.select('*').from('projects');
+  });
+  ipcMain.handle('getLots', async () => {
+    return knex.select('*').from('lots');
   });
   //ipcMain.handle('nonce', () => nonce);
 

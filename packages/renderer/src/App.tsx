@@ -1,20 +1,35 @@
 import './styles.css';
+import {HashRouter} from 'react-router-dom';
+import {Route, RouterProvider, Routes} from 'react-router';
+import {ProjectPage} from './components/templates/projectPage';
+import {LotsPage} from './components/templates/lotsPage';
+import React from 'react';
 
 declare global {
   interface Window {
     myapi: {
       nyan: (str: string) => Promise<string>;
-      test: () => Promise<object[]>;
+      getProjects: () => Promise<object[]>;
+      getLots: () => Promise<object[]>;
       nonce: () => Promise<string>;
     };
   }
 }
-
-const getNya = async () => {
-  const array = await window.myapi.test();
-  return array;
+const App = () => {
+  return (
+    <HashRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={<ProjectPage />}
+        />
+        <Route
+          path="/lots"
+          element={<LotsPage />}
+        />
+      </Routes>
+    </HashRouter>
+  );
 };
-
-const App = () => {};
 
 export default App;
