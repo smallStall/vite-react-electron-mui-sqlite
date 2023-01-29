@@ -10,11 +10,12 @@ declare global {
     myapi: {
       nyan: (str: string) => Promise<string>;
       getProjects: () => Promise<object[]>;
-      getLots: () => Promise<object[]>;
+      getLots: (projectId: string) => Promise<object[]>;
       nonce: () => Promise<string>;
     };
   }
 }
+
 const App = () => {
   return (
     <HashRouter>

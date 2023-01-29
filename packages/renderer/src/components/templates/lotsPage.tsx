@@ -3,9 +3,10 @@ import useSWR from 'swr';
 import {TableGrid} from '../molecules/tableGrid';
 import {Link} from '@mui/material';
 import {GridColDef} from '@mui/x-data-grid';
+import {useGlobalStore} from '/@/store/global';
 
-const getNya = async () => {
-  const array = await window.myapi.getLots();
+const getLots = async (projectId: string) => {
+  const array = await window.myapi.getLots(projectId);
   return array;
 };
 
@@ -30,8 +31,13 @@ const columns: GridColDef[] = [
   {field: 'updated_at', headerName: 'updated_at', width: 100},
 ];
 
+type Props = {
+  projectId: string;
+};
+
 export const LotsPage = () => {
-  const {data} = useSWR('lotsPage', getNya);
+  const {projectId} = useGlobalStore();
+  const {data} = useSWR('lotsPage', () => getLots(projectId));
   if (!data) return null;
   return (
     <TableGrid

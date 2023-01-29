@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {DataGrid, GridColDef} from '@mui/x-data-grid';
+import React from 'react';
+import {DataGrid, GridColDef, GridEventListener} from '@mui/x-data-grid';
 import {Box, styled} from '@mui/system';
 
 const StyledDataGrid = styled(DataGrid)({
@@ -15,9 +15,10 @@ const StyledDataGrid = styled(DataGrid)({
 type Props = {
   list: object[];
   columns: GridColDef[];
+  onCellClick?: GridEventListener<'cellClick'>;
 };
 
-export const TableGrid = ({list, columns}: Props) => {
+export const TableGrid = ({list, columns, onCellClick}: Props) => {
   return (
     <Box
       height={500}
@@ -29,6 +30,7 @@ export const TableGrid = ({list, columns}: Props) => {
         columns={columns}
         rowsPerPageOptions={[3]}
         getRowHeight={() => 'auto'}
+        onCellClick={onCellClick}
       />
     </Box>
   );

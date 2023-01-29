@@ -3,6 +3,7 @@ import useSWR from 'swr';
 import {TableGrid} from '../molecules/tableGrid';
 import {Link} from 'react-router-dom';
 import {GridColDef} from '@mui/x-data-grid';
+import {useGlobalStore} from '/@/store/global';
 
 const getProjects = async () => {
   const array = await window.myapi.getProjects();
@@ -15,6 +16,7 @@ const columns: GridColDef[] = [
     field: 'project_name',
     headerName: 'プロジェクト',
     width: 200,
+
     renderCell: params => {
       return <Link to="/lots">{params.value}</Link>;
     },
@@ -24,12 +26,16 @@ const columns: GridColDef[] = [
 ];
 
 export const ProjectPage = () => {
+  const store = useGlobalStore();
   const {data} = useSWR('projectPage', getProjects);
   if (!data) return null;
   return (
     <TableGrid
       list={data}
       columns={columns}
+      onCellClick={param => {
+        store.setProjectId(param.row.id);
+      }}
     ></TableGrid>
   );
 };

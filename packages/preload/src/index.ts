@@ -6,7 +6,7 @@ const {contextBridge, ipcRenderer} = require('electron');
 contextBridge.exposeInMainWorld('myapi', {
   nyan: async (data: string) => await ipcRenderer.invoke('nyan', data),
   getProjects: async () => await ipcRenderer.invoke('getProjects'),
-  getLots: async (projectId?: number) => await ipcRenderer.invoke('getLots'),
+  getLots: async (projectId: string) => await ipcRenderer.invoke('getLots', projectId),
 });
 
 export {};

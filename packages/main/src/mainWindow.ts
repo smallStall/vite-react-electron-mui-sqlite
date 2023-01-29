@@ -26,8 +26,8 @@ async function createWindow() {
   ipcMain.handle('getProjects', async () => {
     return knex.select('*').from('projects');
   });
-  ipcMain.handle('getLots', async () => {
-    return knex.select('*').from('lots');
+  ipcMain.handle('getLots', async (_event, projectId: number) => {
+    return knex.select('*').from('lots').where('project_id', projectId);
   });
   //ipcMain.handle('nonce', () => nonce);
 
