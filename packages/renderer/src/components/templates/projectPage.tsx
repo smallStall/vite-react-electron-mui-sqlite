@@ -16,7 +16,6 @@ const columns: GridColDef[] = [
     field: 'project_name',
     headerName: 'プロジェクト',
     width: 200,
-
     renderCell: params => {
       return <Link to="/lots">{params.value}</Link>;
     },
@@ -28,7 +27,6 @@ const columns: GridColDef[] = [
 export const ProjectPage = () => {
   const store = useGlobalStore();
   const {data} = useSWR('projectPage', getProjects);
-  useEffect(() => {}, []);
   if (!data) return null;
   return (
     <TableGrid

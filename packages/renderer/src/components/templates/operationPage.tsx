@@ -5,8 +5,8 @@ import {Link} from '@mui/material';
 import {GridColDef} from '@mui/x-data-grid';
 import {useGlobalStore} from '/@/store/global';
 
-const getLots = async (projectId: string) => {
-  const array = await window.sqliteApi.getLots(projectId);
+const getOperations = async (lotId: string) => {
+  const array = await window.sqliteApi.getOperations(lotId);
   return array;
 };
 
@@ -33,8 +33,10 @@ const columns: GridColDef[] = [
 
 export const OperationPage = () => {
   const {lotId} = useGlobalStore();
-  const {data} = useSWR('operationPage', () => getLots(lotId));
-  if (!data) return null;
+  //const {data} = useSWR('operationPage', () => getOperations(lotId));
+  //console.log(data);
+  //if (!data) return null;
+  return <p>{lotId}</p>;
   return (
     <TableGrid
       list={data}

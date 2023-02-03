@@ -6,7 +6,7 @@ import {GridColDef} from '@mui/x-data-grid';
 import {useGlobalStore} from '/@/store/global';
 
 const getOperations = async (projectId: string) => {
-  const array = await window.sqliteApi.getOperations(projectId);
+  const array = await window.sqliteApi.getLots(projectId);
   return array;
 };
 

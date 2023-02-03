@@ -13,6 +13,7 @@ declare global {
       getProjects: () => Promise<object[]>;
       getLots: (projectId: string) => Promise<object[]>;
       getOperations: (lotId: string) => Promise<object[]>;
+      reset: () => void;
       nonce: () => Promise<string>;
     };
   }
