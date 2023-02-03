@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import useSWR from 'swr';
 import {TableGrid} from '../molecules/tableGrid';
 import {Link} from 'react-router-dom';
@@ -6,7 +6,7 @@ import {GridColDef} from '@mui/x-data-grid';
 import {useGlobalStore} from '/@/store/global';
 
 const getProjects = async () => {
-  const array = await window.myapi.getProjects();
+  const array = await window.sqliteApi.getProjects();
   return array;
 };
 
@@ -28,6 +28,7 @@ const columns: GridColDef[] = [
 export const ProjectPage = () => {
   const store = useGlobalStore();
   const {data} = useSWR('projectPage', getProjects);
+  useEffect(() => {}, []);
   if (!data) return null;
   return (
     <TableGrid

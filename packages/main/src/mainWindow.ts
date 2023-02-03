@@ -26,8 +26,15 @@ async function createWindow() {
   ipcMain.handle('getProjects', async () => {
     return knex.select('*').from('projects');
   });
-  ipcMain.handle('getLots', async (_event, projectId: number) => {
+  ipcMain.handle('getLots', async (_event, projectId: string) => {
     return knex.select('*').from('lots').where('project_id', projectId);
+  });
+  ipcMain.handle('getOperations', async (_event, lotId: string) => {
+    return knex
+      .join('process', 'processes.id', 'operateins.process_id')
+      .select('*')
+      .from('processes')
+      .where('lot_id', lotId);
   });
   //ipcMain.handle('nonce', () => nonce);
 
