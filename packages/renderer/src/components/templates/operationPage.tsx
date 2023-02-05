@@ -33,10 +33,9 @@ const columns: GridColDef[] = [
 
 export const OperationPage = () => {
   const {lotId} = useGlobalStore();
-  //const {data} = useSWR('operationPage', () => getOperations(lotId));
-  //console.log(data);
-  //if (!data) return null;
-  return <p>{lotId}</p>;
+  const {data} = useSWR('operationPage', () => getOperations(lotId));
+  console.log(data);
+  if (!data) return null;
   return (
     <TableGrid
       list={data}

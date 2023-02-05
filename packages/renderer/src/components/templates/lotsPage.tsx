@@ -1,7 +1,7 @@
 import React from 'react';
 import useSWR from 'swr';
 import {TableGrid} from '../molecules/tableGrid';
-import {Link} from '@mui/material';
+import {Link} from 'react-router-dom';
 import {GridColDef} from '@mui/x-data-grid';
 import {useGlobalStore} from '/@/store/global';
 
@@ -17,7 +17,7 @@ const columns: GridColDef[] = [
     headerName: 'ロットナンバー',
     width: 100,
     renderCell: params => {
-      return <Link href="/operations">{params.value}</Link>;
+      return <Link to="/operations">{params.value}</Link>;
     },
   },
   {field: 'project_id', headerName: 'project_id'},
@@ -32,13 +32,14 @@ const columns: GridColDef[] = [
 ];
 
 export const LotsPage = () => {
-  const {projectId} = useGlobalStore();
+  const {projectId, setLotId} = useGlobalStore();
   const {data} = useSWR('lotsPage', () => getOperations(projectId));
   if (!data) return null;
   return (
     <TableGrid
       list={data}
       columns={columns}
+      onCellClick={param => setLotId(param.row.id)}
     ></TableGrid>
   );
 };

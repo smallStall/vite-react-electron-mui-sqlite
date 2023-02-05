@@ -28,11 +28,11 @@ const App = () => {
           element={<ProjectPage />}
         />
         <Route
-          path="/lots"
+          path="lots"
           element={<LotsPage />}
         />
         <Route
-          path="/operations"
+          path="operations"
           element={<OperationPage />}
         />
       </Routes>

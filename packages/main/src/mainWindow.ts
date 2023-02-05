@@ -9,6 +9,7 @@ const knex = require('knex')({
   },
 });
 
+//ほぼエクセルと同じ使い方ができるようにしよう
 async function createWindow() {
   const browserWindow = new BrowserWindow({
     width: 1200,
@@ -30,6 +31,7 @@ async function createWindow() {
     return knex.select('*').from('lots').where('project_id', projectId);
   });
   ipcMain.handle('getOperations', async (_event, lotId: string) => {
+    console.log('called');
     return knex
       .join('process', 'processes.id', 'operateins.process_id')
       .select('*')
