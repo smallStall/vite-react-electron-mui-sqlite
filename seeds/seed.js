@@ -40,3 +40,8 @@ const makeLot = index => {
     details: 'しょし'.repeat(index + 1),
   };
 };
+
+/*
+npm cache verify --force
+npm install
+*/
